@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
-    <div class="modal" v-show="show">
-      <div class="modal_title">{{ type }}</div>
+    <div class="modal " v-show="show">
+      <div class="modal_title {{ type }}">{{ message }}</div>
       <button class="dangerBtn" @click="closeModal">{{duration}}</button>
     </div>
   </transition>
@@ -22,13 +22,18 @@ export default {
       default: 3000
     }
   },
-  data() {
+  data () {
     return {
       show: false
     };
   },
+  methods: {
+    closeModal () {
+      this.show = false;
+    },
+  },
   watch: {
-    message() {
+    message () {
       this.show = true;
       setTimeout(() => {
         this.show = false;
@@ -60,11 +65,20 @@ export default {
       margin-left: 4px;
     }
     .modal_title {
-      flex:  1;
+      flex: 1;
       margin: 1px;
       padding: 6px;
       box-shadow: inset 0px 0px 3px #b1b1b1;
       border-radius: 4px;
+    }
+    .success {
+      color: green;
+    }
+    .warning {
+      color: yellow;
+    }
+    .error {
+      color: red;
     }
   }
 </style>
